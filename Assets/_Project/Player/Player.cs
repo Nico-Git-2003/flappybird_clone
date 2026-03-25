@@ -1,8 +1,12 @@
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
+    
+    public float jumpForce = 5f;
+    public float moveSpeed = 15f;
 
     private void Awake()
     {
@@ -21,6 +25,11 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        rb.linearVelocity = Vector2.up * 5f;
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+    }
+
+    private void FixedUpdate()
+    {
+        rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
     }
 }
