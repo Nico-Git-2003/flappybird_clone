@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance; 
     
     public enum GameState { Playing, Paused, GameOver }
-    public GameState CurrentState { get; private set; }
+    public GameState CurrentState { get; set; }
 
     public int Score { get; private set; }
 
@@ -18,5 +19,10 @@ public class GameManager : MonoBehaviour
     public void AddScore(int value)
     {
         Score += value;
+    }
+
+    public void ResetScene()
+    {
+        SceneManager.LoadScene(0);
     }
 }

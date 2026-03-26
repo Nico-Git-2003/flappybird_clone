@@ -9,10 +9,11 @@ public class Player : MonoBehaviour
     public float jumpForce = 5f;
     public float dashForce = 25f;
     public float moveSpeed = 15f;
+    public float fallSpeed = 3;
 
     [SerializeField]private bool isDashing = false;
     [SerializeField] private float dashTime = 0.5f;
-
+    
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -22,12 +23,24 @@ public class Player : MonoBehaviour
     {
         PlayerInputHandler.OnJumpPressed += Jump;
         PlayerInputHandler.OnDashPressed += StartDash;
+        PlayerInputHandler.OnDownPressed += ApplyGravity;
+        PlayerInputHandler.OnDownReleased += ResetGravity;
     }
 
     void OnDisable()
     {
         PlayerInputHandler.OnJumpPressed -= Jump;
         PlayerInputHandler.OnDashPressed -= StartDash;
+        PlayerInputHandler.OnDownPressed -= ApplyGravity;
+        PlayerInputHandler.OnDownReleased -= ResetGravity;
+    }
+    
+    void FixedUpdate()
+    {
+        if (!isDashing)
+        {
+            rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
+        }
     }
 
     void Jump()
@@ -51,18 +64,24 @@ public class Player : MonoBehaviour
         StartCoroutine(Dash());
     }
 
-    void FixedUpdate()
+    void ApplyGravity()
     {
-        if (!isDashing)
-        {
-            rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
-        }
+        rb.gravityScale = fallSpeed;
+    }
+
+    void ResetGravity()
+    {
+        rb.gravityScale = 1;
+    }
+
+    void FreezePlayer()
+    {
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     public void Die()
     {
-        moveSpeed = 0;
-        jumpForce = 0;
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        FreezePlayer();
+        GameManager.Instance.CurrentState =  GameManager.GameState.GameOver;
     }
 }

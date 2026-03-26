@@ -1,16 +1,17 @@
+using System;
 using UnityEngine;
 
 public class Menu : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public GameObject gameOverMenu;
+
+    private void Update()
     {
-        
+        if(GameManager.Instance.CurrentState == GameManager.GameState.GameOver) EnableGameOverMenu();
     }
 
-    // Update is called once per frame
-    void Update()
+    void EnableGameOverMenu()
     {
-        
+        gameOverMenu.SetActive(true);
     }
 }
