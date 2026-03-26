@@ -4,20 +4,11 @@ using Random = UnityEngine.Random;
 
 public class PipeSpawner : MonoBehaviour
 {
-    //prefab für pipe
     public GameObject pipePrefab;
 
-    /*mindest- und maximalabstand zwischen pipes
-     abstand zwischen pipes (übereinander)
-     abstand zwischen pipes (nebeneinander)
-     */
-
     public int gapX = 7;
-    
-    public int pipeGapMinTop = 16;
-    public int pipeGapMaxTop = 8;
-    public int pipeGapMinBot = -16;
-    public int pipeGapMaxBot = -8;
+    public int pipeGapMin = 16;
+    public int pipeGapMax = 8;
 
     private void Start()
     {
@@ -28,11 +19,11 @@ public class PipeSpawner : MonoBehaviour
     {
         for (int i = 0; i < 20; i++)
         {
-            float offsetTop =  Random.Range(pipeGapMinTop, pipeGapMaxTop);
-            float offsetBot = Random.Range(pipeGapMinBot, pipeGapMaxBot);
+            float offsetTop =  Random.Range(pipeGapMin, pipeGapMax);
+            float offsetBot = -Random.Range(pipeGapMin, pipeGapMax);
             
-            GameObject pipe1 = Instantiate(pipePrefab, new Vector3(transform.position.x + i * gapX, offsetTop, 0), Quaternion.identity);
-            GameObject pipe2 = Instantiate(pipePrefab, new Vector3(transform.position.x + i * gapX, offsetBot, 0), Quaternion.identity);   
+            GameObject pipeTop = Instantiate(pipePrefab, new Vector3(transform.position.x + i * gapX, offsetTop, 0), Quaternion.identity);
+            GameObject pipeBot = Instantiate(pipePrefab, new Vector3(transform.position.x + i * gapX, offsetBot, 0), Quaternion.identity);   
         }
     }
 }
