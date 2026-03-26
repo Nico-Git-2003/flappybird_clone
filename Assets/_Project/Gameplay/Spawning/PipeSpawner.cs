@@ -18,20 +18,21 @@ public class PipeSpawner : MonoBehaviour
 
     void SpawnPipe()
     {
+        GameObject pipeParent = new  GameObject("Pipes");
+        
         //TODO a specific amount of pipes will spawn depending on the player socore -> for example every third score new pipes will spawn. this way its endless
         for (int i = 0; i < 20; i++)
         {
             int offsetTop =  Random.Range(pipeGapMin, pipeGapMax);
             int offsetBot = -Random.Range(pipeGapMin, pipeGapMax);
 
-            int scoreColliderYPosition = offsetTop / offsetBot;
-            
             float xPosition = transform.position.x + i * gapX;
             
-            GameObject pipeTop = Instantiate(pipePrefab, new Vector3(xPosition, offsetTop, 0), Quaternion.identity);
-            GameObject pipeBot = Instantiate(pipePrefab, new Vector3(xPosition, offsetBot, 0), Quaternion.identity); 
+            GameObject pipeTop = Instantiate(pipePrefab, new Vector3(xPosition, offsetTop, 0), Quaternion.identity, pipeParent.transform);
+            GameObject pipeBot = Instantiate(pipePrefab, new Vector3(xPosition, offsetBot, 0), Quaternion.identity, pipeParent.transform); 
             
-            GameObject scoreCollider = Instantiate(scoreColliderPrefab, new Vector3(xPosition, scoreColliderYPosition, 0), Quaternion.identity);
+            int scoreColliderYPosition = offsetTop / offsetBot;
+            GameObject scoreCollider = Instantiate(scoreColliderPrefab, new Vector3(xPosition, scoreColliderYPosition, 0), Quaternion.identity, pipeParent.transform);
         }
     }
 }
