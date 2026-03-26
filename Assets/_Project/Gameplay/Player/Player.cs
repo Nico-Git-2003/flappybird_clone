@@ -32,4 +32,11 @@ public class Player : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
     }
+
+    public void Die()
+    {
+        moveSpeed = 0;
+        jumpForce = 0;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+    }
 }
