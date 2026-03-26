@@ -287,9 +287,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PipeSpawner
   pipePrefab: {fileID: 8118467855017086954, guid: 96eeb2390a0476d47a66d5bc2da4bc9c, type: 3}
   scoreColliderPrefab: {fileID: 7631417481633192911, guid: 72115fbd88407f94382f97ab5c9711ad, type: 3}
-  gapX: 9
-  pipeGapMin: 16
-  pipeGapMax: 8
+  pipeGapX: 7
+  topPipeSpawnMin: 1
+  topPipeSpawnMax: 18
+  pipeGapYMin: 8
 --- !u!4 &59727921
 Transform:
   m_ObjectHideFlags: 0

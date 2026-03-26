@@ -10,7 +10,7 @@ public class ScoreCollider : MonoBehaviour
         if (other.CompareTag("Player") && isSpecial)
         {
             GameManager.Instance.AddScore(1);
-            float xPos = transform.position.x + PipeSpawner.Instance.gapX * 3;
+            float xPos = transform.position.x + PipeSpawner.Instance.pipeGapX * 3;
             PipeSpawner.Instance.SpawnPipes(6, xPos);
         }
         else if (other.CompareTag("Player"))
