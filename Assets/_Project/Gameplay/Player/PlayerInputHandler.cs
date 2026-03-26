@@ -5,6 +5,7 @@ using System;
 public class PlayerInputHandler : MonoBehaviour
 {
     public static event Action OnJumpPressed;
+    public static event Action OnDashPressed;
     
     private PlayerInput playerInput;
 
@@ -16,5 +17,10 @@ public class PlayerInputHandler : MonoBehaviour
     public void OnJump()
     {
         OnJumpPressed?.Invoke();
+    }
+
+    public void OnDash()
+    {
+        OnDashPressed?.Invoke();
     }
 }

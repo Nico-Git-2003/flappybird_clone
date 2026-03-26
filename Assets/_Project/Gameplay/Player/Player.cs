@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -6,31 +7,56 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     
     public float jumpForce = 5f;
+    public float dashForce = 25f;
     public float moveSpeed = 15f;
 
-    private void Awake()
+    [SerializeField]private bool isDashing = false;
+    [SerializeField] private float dashTime = 0.5f;
+
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void OnEnable()
+    void OnEnable()
     {
         PlayerInputHandler.OnJumpPressed += Jump;
+        PlayerInputHandler.OnDashPressed += StartDash;
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         PlayerInputHandler.OnJumpPressed -= Jump;
+        PlayerInputHandler.OnDashPressed -= StartDash;
     }
 
-    private void Jump()
+    void Jump()
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
     }
 
-    private void FixedUpdate()
+    IEnumerator Dash()
     {
-        rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
+        if (!isDashing)
+        {
+            isDashing = true;
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x * dashForce, rb.linearVelocity.y);
+            yield return new WaitForSeconds(dashTime);
+            isDashing = false;   
+        }
+    }
+
+    void StartDash()
+    {
+        StartCoroutine(Dash());
+    }
+
+    void FixedUpdate()
+    {
+        if (!isDashing)
+        {
+            rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
+        }
     }
 
     public void Die()

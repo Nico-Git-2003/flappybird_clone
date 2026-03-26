@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PipeSpawner
   pipePrefab: {fileID: 8118467855017086954, guid: 96eeb2390a0476d47a66d5bc2da4bc9c, type: 3}
   scoreColliderPrefab: {fileID: 7631417481633192911, guid: 72115fbd88407f94382f97ab5c9711ad, type: 3}
-  gapX: 7
+  gapX: 9
   pipeGapMin: 16
   pipeGapMax: 8
 --- !u!4 &59727921
@@ -870,7 +870,7 @@ Transform:
   m_GameObject: {fileID: 1059439083}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -11, z: 0}
+  m_LocalPosition: {x: 0, y: -12.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -911,7 +911,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -938,8 +938,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baf1e2ab89815c40b3b55cfb6f04225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  jumpForce: 10
-  moveSpeed: 3
+  jumpForce: 8
+  dashForce: 5
+  moveSpeed: 5
+  isDashing: 0
 --- !u!114 &1371151111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1215,6 +1217,26 @@ PrefabInstance:
     - target: {fileID: 2324100610890324340, guid: 719c14a92a3ee49499fffe17cc80b82d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2333025275546785313, guid: 719c14a92a3ee49499fffe17cc80b82d, type: 3}
+      propertyPath: Composition.DeadZone.Size.x
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2333025275546785313, guid: 719c14a92a3ee49499fffe17cc80b82d, type: 3}
+      propertyPath: Composition.DeadZone.Size.y
+      value: 1.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2333025275546785313, guid: 719c14a92a3ee49499fffe17cc80b82d, type: 3}
+      propertyPath: Composition.DeadZone.Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2333025275546785313, guid: 719c14a92a3ee49499fffe17cc80b82d, type: 3}
+      propertyPath: Composition.HardLimits.Size.x
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2333025275546785313, guid: 719c14a92a3ee49499fffe17cc80b82d, type: 3}
+      propertyPath: Composition.HardLimits.Size.y
+      value: 1.22
       objectReference: {fileID: 0}
     - target: {fileID: 7870391140789475828, guid: 719c14a92a3ee49499fffe17cc80b82d, type: 3}
       propertyPath: m_Name
