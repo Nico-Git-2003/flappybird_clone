@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8113677693353901363}
   - component: {fileID: 1616987022415539587}
-  - component: {fileID: 2340164226508000302}
+  - component: {fileID: 6088012507774940120}
   m_Layer: 0
   m_Name: ScoreColliderPrefab
-  m_TagString: Untagged
+  m_TagString: ScoreSource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,7 +79,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.2393756, y: 32.939034}
   m_EdgeRadius: 0
---- !u!114 &2340164226508000302
+--- !u!114 &6088012507774940120
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,4 +90,5 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6a3c6080f184776bdf72717aa135bce, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScoreTrigger
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreCollider
+  isSpecial: 0

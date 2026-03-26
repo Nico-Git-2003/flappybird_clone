@@ -1699,7 +1699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa8c65f4ff0fbf45996ecdaff3de51a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeathZone
-  player: {fileID: 1371151108}
+  player: {fileID: 1371151110}
 --- !u!1 &1099571931
 GameObject:
   m_ObjectHideFlags: 0
@@ -2329,6 +2329,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1588432084827719118, guid: 3f103a91fe51a854b93543c6ca5b5357, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1588432084827719118, guid: 3f103a91fe51a854b93543c6ca5b5357, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2511418698493838026, guid: 3f103a91fe51a854b93543c6ca5b5357, type: 3}
