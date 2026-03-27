@@ -43,6 +43,13 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(GameManager.Instance.CurrentState == GameManager.GameState.Upgrade)
+            FreezePlayer();
+        else rb.constraints = RigidbodyConstraints2D.None;
+    }
+
     void Jump()
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);

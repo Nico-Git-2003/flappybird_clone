@@ -10,9 +10,10 @@ public class PipeSpawner : MonoBehaviour
     
     public int pipeGapX = 7;
     
-    public int topPipeSpawnMin; //the smaller this value, the closer the pipes will get -> game gets harder (16)
-    public int topPipeSpawnMax; // 0
+    public int topPipeSpawnMin;
+    public int topPipeSpawnMax;
     public int pipeGapYMin;
+    public int pipeGapYMax;
     
     private void Awake()
     {
@@ -29,12 +30,12 @@ public class PipeSpawner : MonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             int offsetTop =  Random.Range(topPipeSpawnMin, topPipeSpawnMax + 1);
-            int offsetBot = offsetTop - Random.Range(topPipeSpawnMax, topPipeSpawnMax + 2);
+            int offsetBot = offsetTop - Random.Range(pipeGapYMin,pipeGapYMax);
             
             float xPosition = x + i * pipeGapX;
             
             GameObject pipeTop = Instantiate(pipePrefab, new Vector3(xPosition, offsetTop, 0), Quaternion.identity, pipeParent.transform);
-            GameObject pipeBot = Instantiate(pipePrefab, new Vector3(xPosition, offsetBot, 0), Quaternion.identity, pipeParent.transform); 
+            GameObject pipeBot = Instantiate(pipePrefab, new Vector3(xPosition, offsetBot, 0), Quaternion.identity, pipeParent.transform);
             
             int scoreColliderYPosition = (int)(pipeTop.transform.position.y + pipeBot.transform.position.y) / 2;
             GameObject scoreColliderGameObject = Instantiate(scoreColliderPrefab, new Vector3(xPosition, scoreColliderYPosition, 0), Quaternion.identity, pipeParent.transform);
