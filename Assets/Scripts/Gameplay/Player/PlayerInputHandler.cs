@@ -26,10 +26,27 @@ public class PlayerInputHandler : MonoBehaviour
         OnDashPressed?.Invoke();
     }
     
-    public void OnDown()
+    private void OnEnable()
     {
-        playerInput.actions["Down"].performed += ctx => OnDownPressed?.Invoke();
-        playerInput.actions["Down"].canceled += ctx => OnDownReleased?.Invoke();
+        playerInput.actions["Down"].performed += OnDownPerformed;
+        playerInput.actions["Down"].canceled += OnDownCanceled;
+    }
+
+    private void OnDisable()
+    {
+        playerInput.actions["Down"].performed -= OnDownPerformed;
+        playerInput.actions["Down"].canceled -= OnDownCanceled;
+    }
+
+    
+    private void OnDownPerformed(InputAction.CallbackContext ctx)
+    {
+        OnDownPressed?.Invoke();
+    }
+
+    private void OnDownCanceled(InputAction.CallbackContext ctx)
+    {
+        OnDownReleased?.Invoke();
     }
     
 }

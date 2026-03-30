@@ -347,7 +347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PipeSpawner
   pipePrefab: {fileID: 8118467855017086954, guid: 96eeb2390a0476d47a66d5bc2da4bc9c, type: 3}
   scoreColliderPrefab: {fileID: 7631417481633192911, guid: 72115fbd88407f94382f97ab5c9711ad, type: 3}
-  pipeGapX: 11
+  pipeGapX: 10
   topPipeSpawnMin: 40
   topPipeSpawnMax: 25
   pipeGapYMin: 64
@@ -895,6 +895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7639be021b8d81140972ee7fd6085f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  player: {fileID: 1371151107}
 --- !u!4 &503097949
 Transform:
   m_ObjectHideFlags: 0
@@ -1331,8 +1332,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 111.2, y: -34.9}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 222.3678, y: -68.02573}
+  m_SizeDelta: {x: 422.3356, y: 116.2515}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &635763821
 MonoBehaviour:
@@ -1381,8 +1382,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 73.83
+  m_fontSizeBase: 73.83
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1759,7 +1760,7 @@ Transform:
   m_GameObject: {fileID: 1059439083}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -12.54, z: 0}
+  m_LocalPosition: {x: 0, y: -22.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1948,10 +1949,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baf1e2ab89815c40b3b55cfb6f04225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  jumpForce: 6
-  dashForce: 2
-  moveSpeed: 3
+  timer: 0
+  baseJumpForce: 4
+  baseMoveSpeed: 4
+  baseDashForce: 8
+  baseDashCooldown: 1.5
+  jumpForce: 7
+  moveSpeed: 5
+  dashForce: 4
+  dashCooldown: 1.5
   fallSpeed: 5
+  canDash: 0
   isDashing: 0
   dashTime: 0.5
 --- !u!114 &1371151111
@@ -2073,6 +2081,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d0278c54b79ccbe4980a080a0ebc0cad, type: 2}
   upgradePrefab: {fileID: 683925363157544900, guid: 25a903eea0098b0438323868806286db, type: 3}
   upgradeMenu: {fileID: 34948326}
+  dashForceLevel: 0
+  dashCooldownLevel: 0
+  jumpLevel: 0
+  speedLevel: 0
 --- !u!1 &1833716597
 GameObject:
   m_ObjectHideFlags: 0

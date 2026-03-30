@@ -15,3 +15,4 @@ MonoBehaviour:
   upgradeName: Dash Cooldown Uprade +1
   upgradeIcon: {fileID: 0}
   upgradeDescription: this upgrade will decrease your dash cooldown
+  upgradeType: 1

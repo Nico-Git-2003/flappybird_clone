@@ -216,7 +216,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7161558993083467734}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7251597738531964709}
+        m_TargetAssemblyTypeName: UpgradeHolder, Assembly-CSharp
+        m_MethodName: UseUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3340100160195254943
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,8 +537,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -71}
-  m_SizeDelta: {x: 288.4028, y: 50}
+  m_AnchoredPosition: {x: 0, y: -77}
+  m_SizeDelta: {x: 322.9909, y: 35.531}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2371647877163834337
 CanvasRenderer:
@@ -556,7 +568,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Upgradename
+  m_text: Dash Cooldown Upgrade +1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -583,8 +595,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33
-  m_fontSizeBase: 33
+  m_fontSize: 24.37
+  m_fontSizeBase: 24.37
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

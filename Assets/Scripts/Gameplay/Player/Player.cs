@@ -5,18 +5,35 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
+    public float timer = 0;
+
+    public float baseJumpForce = 5f;
+    public float baseMoveSpeed = 15f;
+    public float baseDashForce = 25f;
+    public float baseDashCooldown = 1.5f;
     
-    public float jumpForce = 5f;
-    public float dashForce = 25f;
-    public float moveSpeed = 15f;
+    public float jumpForce;
+    public float moveSpeed;
+    public float dashForce;
+    public float dashCooldown;
+    
     public float fallSpeed = 3;
 
+    public bool canDash = false;
     [SerializeField]private bool isDashing = false;
     [SerializeField] private float dashTime = 0.5f;
     
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
+        jumpForce = baseJumpForce;
+        moveSpeed = baseMoveSpeed;
+        dashForce = baseDashForce;
+        dashCooldown = baseDashCooldown;
     }
 
     void OnEnable()
@@ -47,7 +64,14 @@ public class Player : MonoBehaviour
     {
         if(GameManager.Instance.CurrentState == GameManager.GameState.Upgrade)
             FreezePlayer();
-        else rb.constraints = RigidbodyConstraints2D.None;
+        else rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        
+        timer -= Time.deltaTime;
+        if (timer <= 0)
+        {
+            canDash = true;
+            timer = 0;
+        }
     }
 
     void Jump()
@@ -60,15 +84,20 @@ public class Player : MonoBehaviour
         if (!isDashing)
         {
             isDashing = true;
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x * dashForce, rb.linearVelocity.y);
+            rb.linearVelocity = new Vector2(dashForce, rb.linearVelocity.y);
             yield return new WaitForSeconds(dashTime);
-            isDashing = false;   
+            isDashing = false;
         }
     }
 
     void StartDash()
     {
-        StartCoroutine(Dash());
+        if (canDash)
+        {
+            canDash = false;
+            timer = dashCooldown;
+            StartCoroutine(Dash());
+        }
     }
 
     void ApplyGravity()

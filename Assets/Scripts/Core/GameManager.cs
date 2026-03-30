@@ -3,7 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance; 
+    public static GameManager Instance;
+
+    public GameObject player;
     
     public enum GameState { Playing, Paused, GameOver, Upgrade }
     public GameState CurrentState { get; set; }

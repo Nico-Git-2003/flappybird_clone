@@ -18,4 +18,9 @@ public class UpgradeHolder : MonoBehaviour
             upgradeDescriptionText.text = upgrade.upgradeDescription;
         }
     }
+
+    public void UseUpgrade()
+    {
+        GameManager.Instance.player.GetComponent<PlayerUpgradeHandler>().Upgrade(upgrade);
+    }
 }
