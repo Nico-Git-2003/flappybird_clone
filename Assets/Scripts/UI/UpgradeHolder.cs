@@ -21,6 +21,7 @@ public class UpgradeHolder : MonoBehaviour
 
     public void UseUpgrade()
     {
-        GameManager.Instance.player.GetComponent<PlayerUpgradeHandler>().Upgrade(upgrade);
+        PlayerUpgradeHandler playerUpgradeHandler = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerUpgradeHandler>();
+        playerUpgradeHandler.Upgrade(upgrade);
     }
 }

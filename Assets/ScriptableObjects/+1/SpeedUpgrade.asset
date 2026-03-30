@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeInfo
   upgradeName: Speed Upgrade +1
   upgradeIcon: {fileID: 0}
-  upgradeDescription: this upgrade will improve your fly speed
+  upgradeDescription: this upgrade will increase your fly speed
   upgradeType: 3

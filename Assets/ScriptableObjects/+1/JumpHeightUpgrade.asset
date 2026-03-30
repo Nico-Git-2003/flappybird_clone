@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeInfo
   upgradeName: Jump Uprade +1
   upgradeIcon: {fileID: 0}
-  upgradeDescription: this upgrade will improve your jump height
+  upgradeDescription: this upgrade will increase your jump height
   upgradeType: 2

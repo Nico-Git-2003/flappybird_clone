@@ -4,8 +4,10 @@ public enum UpgradeType
 {
     DashForce,
     DashCooldown,
+    DashTime,
     Jump,
-    Speed
+    Speed,
+    Fall
 }
 
 [CreateAssetMenu(fileName = "UpgradeInfo", menuName = "Scriptable Objects/Upgrade")]

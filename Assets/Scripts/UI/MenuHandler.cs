@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Menu : MonoBehaviour
+public class MenuHandler : MonoBehaviour
 {
     public GameObject gameOverMenu;
     public GameObject upgradeMenu;

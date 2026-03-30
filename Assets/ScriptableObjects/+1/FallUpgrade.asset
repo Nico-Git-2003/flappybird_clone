@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d64e50534936644419f4338577f27305, type: 3}
-  m_Name: DashForceUpgrade
+  m_Name: FallUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeInfo
-  upgradeName: Dash Power Uprade +1
+  upgradeName: Fall Upgrade +1
   upgradeIcon: {fileID: 0}
-  upgradeDescription: this upgrade will increase your dash power
-  upgradeType: 0
+  upgradeDescription: this upgrade will increase your fall speed
+  upgradeType: 5

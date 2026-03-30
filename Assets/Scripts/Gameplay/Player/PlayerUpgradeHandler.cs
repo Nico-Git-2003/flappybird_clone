@@ -17,13 +17,17 @@ public class PlayerUpgradeHandler : MonoBehaviour
 
     public int dashForceLevel;
     public int dashCooldownLevel;
+    public int dashTimeLevel;
     public int jumpLevel;
     public int speedLevel;
+    public int fallLevel;
 
     private float dashForceUpgradeMultiplier = 0.25f;
     private float dashCooldownUpgradeMultiplier = 0.1f;
+    private float dashTimeUpgradeMultiplier = 0.05f;
     private float jumpUpgradeMultiplier = 0.25f;
     private float moveUpgradeMultiplier = 0.2f;
+    private float fallUpgradeMultiplier = 0.1f;
 
     private List<GameObject> upgradePrefabs = new List<GameObject>();
     
@@ -47,11 +51,16 @@ public class PlayerUpgradeHandler : MonoBehaviour
 
     void CreateUpgrades()
     {
+        List<Upgrade> avaiableUpgrades = new List<Upgrade>(upgrades);
+        
         for (int i = 0; i < 3; i++)
         {
-            GameObject upgrade = Instantiate(upgradePrefab, upgradeMenu.transform);
-            upgradePrefabs.Add(upgrade);
-            upgrade.GetComponent<UpgradeHolder>().upgrade = upgrades[Random.Range(0, upgrades.Count)];
+            GameObject upgradeGameObject = Instantiate(upgradePrefab, upgradeMenu.transform);
+            upgradePrefabs.Add(upgradeGameObject);
+
+            Upgrade upgrade = avaiableUpgrades[Random.Range(0, avaiableUpgrades.Count)];
+            upgradeGameObject.GetComponent<UpgradeHolder>().upgrade = upgrade;
+            avaiableUpgrades.Remove(upgrade);
         }
     }
 
@@ -59,23 +68,28 @@ public class PlayerUpgradeHandler : MonoBehaviour
     {
         if (upgrade != null)
         {
-            if (upgrade.upgradeType == UpgradeType.DashCooldown)
+            switch (upgrade.upgradeType)
             {
-                dashCooldownLevel++;
+                case UpgradeType.DashCooldown:
+                    dashCooldownLevel++;
+                    break;
+                case UpgradeType.DashForce:
+                    dashForceLevel++;
+                    break;
+                case UpgradeType.DashTime:
+                    dashTimeLevel++;
+                    break;
+                case UpgradeType.Jump:
+                    jumpLevel++;
+                    break;
+                case UpgradeType.Speed:
+                    speedLevel++;
+                    break;
+                case  UpgradeType.Fall:
+                    fallLevel++;
+                    break;
             }
-            else if (upgrade.upgradeType == UpgradeType.DashForce)
-            {
-                dashForceLevel++;
-            }
-            else if (upgrade.upgradeType == UpgradeType.Jump)
-            {
-                jumpLevel++;
-            }
-            else if (upgrade.upgradeType == UpgradeType.Speed)
-            {
-                speedLevel++;
-            }
-
+            
             ApplyUpgrades();
         }
     }
@@ -89,6 +103,10 @@ public class PlayerUpgradeHandler : MonoBehaviour
         playerScript.jumpForce = playerScript.baseJumpForce + jumpLevel * jumpUpgradeMultiplier;
 
         playerScript.moveSpeed = playerScript.baseMoveSpeed + speedLevel * moveUpgradeMultiplier;
+        
+        playerScript.fallSpeed = playerScript.baseFallSpeed + fallLevel * fallUpgradeMultiplier;
+        
+        playerScript.dashTime = playerScript.baseDashTime + dashTimeLevel * dashTimeUpgradeMultiplier;
 
         for (int i = 0; i < upgradePrefabs.Count; i++)
         {

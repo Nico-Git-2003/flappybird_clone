@@ -7,21 +7,22 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     public float timer = 0;
 
-    public float baseJumpForce = 5f;
-    public float baseMoveSpeed = 15f;
-    public float baseDashForce = 25f;
-    public float baseDashCooldown = 1.5f;
+    [HideInInspector] public float baseJumpForce = 5f;
+    [HideInInspector] public float baseMoveSpeed = 15f;
+    [HideInInspector] public float baseDashForce = 25f;
+    [HideInInspector] public float baseDashCooldown = 1.5f;
+    [HideInInspector] public float baseFallSpeed = 3f;
+    [HideInInspector] public float baseDashTime = 0.3f;
     
     public float jumpForce;
     public float moveSpeed;
     public float dashForce;
     public float dashCooldown;
-    
-    public float fallSpeed = 3;
+    public float fallSpeed;
+    public float dashTime;
 
     public bool canDash = false;
-    [SerializeField]private bool isDashing = false;
-    [SerializeField] private float dashTime = 0.5f;
+    public bool isDashing = false;
     
     void Awake()
     {
@@ -34,6 +35,8 @@ public class Player : MonoBehaviour
         moveSpeed = baseMoveSpeed;
         dashForce = baseDashForce;
         dashCooldown = baseDashCooldown;
+        fallSpeed = baseFallSpeed;
+        dashTime = baseDashTime;
     }
 
     void OnEnable()
@@ -65,12 +68,15 @@ public class Player : MonoBehaviour
         if(GameManager.Instance.CurrentState == GameManager.GameState.Upgrade)
             FreezePlayer();
         else rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        
-        timer -= Time.deltaTime;
-        if (timer <= 0)
+
+        if (GameManager.Instance.canDash)
         {
-            canDash = true;
-            timer = 0;
+            timer -= Time.deltaTime;
+            if (timer <= 0 )
+            {
+                canDash = true;
+                timer = 0;
+            }   
         }
     }
 
@@ -102,7 +108,10 @@ public class Player : MonoBehaviour
 
     void ApplyGravity()
     {
-        rb.gravityScale = fallSpeed;
+        if (GameManager.Instance.fastFall)
+        {
+            rb.gravityScale = fallSpeed;
+        }
     }
 
     void ResetGravity()
