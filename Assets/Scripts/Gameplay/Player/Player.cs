@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if(GameManager.Instance.CurrentState == GameManager.GameState.Upgrade)
+        if(GameManager.Instance.CurrentState != GameManager.GameState.Playing)
             FreezePlayer();
         else rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
@@ -126,7 +126,6 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-        FreezePlayer();
         GameManager.Instance.CurrentState =  GameManager.GameState.GameOver;
     }
 }

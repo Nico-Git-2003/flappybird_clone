@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   currentLevel: 0
-  player: {fileID: 0}
+  levelPrefabs: []
   canDash: 0
   fastFall: 0
+  PipeSpawner: {fileID: 5361616277690004474, guid: 277abf49627f12543b46946c946f6295, type: 3}
+  CanvasGameObject: {fileID: 7353047484576727691, guid: bca2316fee04e8741ba80abb00122c4f, type: 3}

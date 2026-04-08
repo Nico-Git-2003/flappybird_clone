@@ -15,4 +15,4 @@ MonoBehaviour:
   upgradeName: Jump Uprade +1
   upgradeIcon: {fileID: 0}
   upgradeDescription: this upgrade will increase your jump height
-  upgradeType: 2
+  upgradeType: 3

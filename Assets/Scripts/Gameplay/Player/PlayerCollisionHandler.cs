@@ -16,6 +16,10 @@ public class PlayerCollisionHandler : MonoBehaviour
         {
             player.Die();
         }
+        else if (other.CompareTag("WinZone"))
+        {
+            GameManager.Instance.CurrentState = GameManager.GameState.LevelFinished;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)

@@ -50,4 +50,4 @@ MonoBehaviour:
   topPipeSpawnMin: 40
   topPipeSpawnMax: 25
   pipeGapYMin: 64
-  pipeGapYMax: 72
+  pipeGapYMax: 74

@@ -15,4 +15,4 @@ MonoBehaviour:
   upgradeName: Speed Upgrade +1
   upgradeIcon: {fileID: 0}
   upgradeDescription: this upgrade will increase your fly speed
-  upgradeType: 3
+  upgradeType: 4

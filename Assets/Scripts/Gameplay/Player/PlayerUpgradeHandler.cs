@@ -34,6 +34,8 @@ public class PlayerUpgradeHandler : MonoBehaviour
     private void Start()
     {
         playerScript = GetComponent<Player>();
+
+        upgradeMenu = GameObject.Find("GameCanvas(Clone)").transform.GetChild(2).gameObject;
     }
 
     private void Update()

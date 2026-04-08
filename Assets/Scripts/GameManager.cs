@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     
     //Game State
-    public enum GameState { Playing, Paused, GameOver, Upgrade }
+    public enum GameState { Playing, Paused, GameOver, Upgrade, Menu, LevelFinished }
     public GameState CurrentState { get; set; }
     
     //Game Mode
@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [Header("Level Settings")]
     public int currentLevel = 0;
     public GameObject[] levelPrefabs;
+    public float levelTimer = 0;
     
     [Header("Player Settings")]
     public bool canDash = false;
@@ -24,6 +25,12 @@ public class GameManager : MonoBehaviour
 
     public int Score { get; private set; }
 
+    [Header("Endless Settings")] 
+    public GameObject PipeSpawner;
+
+    [Header("UI Settings")] 
+    public GameObject CanvasGameObject;
+    
     private void Awake()
     {
         if (Instance == null)
@@ -34,6 +41,11 @@ public class GameManager : MonoBehaviour
         else Destroy(gameObject);
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void Update()
+    {
+        if(CurrentGameMode ==  GameMode.Level) levelTimer += Time.deltaTime;
     }
 
     private void OnDestroy()
@@ -54,27 +66,42 @@ public class GameManager : MonoBehaviour
         Score += value;
     }
 
-    public void ResetScene()
+    public void PlayAgain()
     {
-        SceneManager.LoadScene(0);
+        GameManager.Instance.CurrentState =  GameManager.GameState.Playing;
+        ResetScore();
+        SceneManager.LoadScene(1);
+        GameManager.Instance.levelTimer = 0;
     }
     
     private void SpawnLevel()
     {
         if (CurrentGameMode == GameMode.Level && currentLevel > 0 && currentLevel <= levelPrefabs.Length)
         {
-            Debug.Log("test");
             GameObject levelPrefab = levelPrefabs[currentLevel - 1];
             Instantiate(levelPrefab);
         }
         else if (CurrentGameMode == GameMode.Endless)
         {
-            //shit für endless mode spawnen lassen
+            Debug.Log("Test");
+            Instantiate(PipeSpawner);
         }
+
+        Instantiate(CanvasGameObject);
+    }
+
+    public void ResetScore()
+    {
+        Score = 0;
     }
     
     public void StartLevel(int level)
     {
+        levelTimer = 0;
+        canDash = false;
+        fastFall = false;
+        
+        CurrentState = GameState.Playing;
         CurrentGameMode = GameMode.Level;
         currentLevel = level;
 
@@ -94,6 +121,7 @@ public class GameManager : MonoBehaviour
     
     public void StartEndlessMode()
     {
+        CurrentState = GameState.Playing;
         CurrentGameMode = GameMode.Endless;
         currentLevel = 0;
         canDash = true;
